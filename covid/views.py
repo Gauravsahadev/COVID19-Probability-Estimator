@@ -13,22 +13,22 @@ def index(request):
     
 
     if request.method == 'POST':
-        full_name = str(request.POST['full_name'])
-        age = int(request.POST['age'])
-        gender = int(request.POST['gender'])
-        fever = int(request.POST['fever'])
-        cough = int(request.POST['cough'])
-        fatigue = int(request.POST['fatigue'])
-        pains = int(request.POST['pains'])
-        nasal_congestion = int(request.POST['nasal_congestion'])
-        shortness_of_breath = int(request.POST['shortness_of_breath'])
-        runny_nose = int(request.POST['runny_nose'])
-        sore_throat = int(request.POST['sore_throat'])
-        diarrhea = int(request.POST['diarrhea'])
-        chills = int(request.POST['chills'])
-        headache = int(request.POST['headache'])
-        vomiting = int(request.POST['vomiting'])
-        lives_in_affected_area = int(request.POST['lives_in_affected_area'])
+        # full_name = str(request.POST['full_name'])
+        age = request.POST['age']
+        gender = request.POST['gender']
+        fever = request.POST['fever']
+        cough = request.POST['cough']
+        fatigue = request.POST['fatigue']
+        pains = request.POST['pains']
+        nasal_congestion = request.POST['nasal_congestion']
+        shortness_of_breath = request.POST['shortness_of_breath']
+        runny_nose = request.POST['runny_nose']
+        sore_throat = request.POST['sore_throat']
+        diarrhea = request.POST['diarrhea']
+        chills = request.POST['chills']
+        headache =request.POST['headache']
+        vomiting = request.POST['vomiting']
+        lives_in_affected_area = request.POST['lives_in_affected_area']
 
 
         user_data = np.array(
@@ -47,12 +47,14 @@ def index(request):
              headache,
              vomiting,
              lives_in_affected_area)
-        ).reshape(1, 13)
+        ).reshape(1, 15)
 
         rf = RandomForestClassifier(random_state=42)
 
         rf.fit(np.nan_to_num(X), y)
         rf.score(np.nan_to_num(X), y)
         result = rf.predict_proba(user_data)
+        return render(request,"index.html",{'result':result})
+    else:
+        return render(request,"index.html")
 
-    return render(request,"index.html",{'result':result})
