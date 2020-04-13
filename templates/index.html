@@ -3,12 +3,7 @@
 {% block content %}
 
    <div class="container" style="padding:40px 15px 0px 15px">
-      <!-- Result Block -->
-      {% if result %}
-      <div class="display-4 my-2 text-center">
-        COVID19 Probability: {{ result }}
-      </div>
-      {% endif %}
+      
       
       <div>
         <form class="row" method="POST" action="{% url 'index' %}">
@@ -77,7 +72,7 @@
                 <span>Fatigue</span>
               </label>
             </div>
-            <br>
+             <br>
             <div>
               <label>
                 <input id="indeterminate-checkbox pains" name="pains"  type="checkbox" />
