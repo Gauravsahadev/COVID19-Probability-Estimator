@@ -13,7 +13,7 @@ def index(request):
     
 
     if request.method == 'POST':
-        # full_name = str(request.POST['full_name'])
+        full_name = request.POST['full_name']
         age = request.POST['age']
         gender = request.POST['gender']
         fever = request.POST['fever']
@@ -60,6 +60,7 @@ def index(request):
         ).reshape(1, 15)
 
         print(user_data)
+        print(full_name)
 
         rf = RandomForestClassifier(random_state=42)
 

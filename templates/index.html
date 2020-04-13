@@ -15,13 +15,13 @@
           {% csrf_token %}
           <div class="col m6">
             <div>
-              <label for="full_name">Name<a class="tooltipped" data-position="right" data-tooltip="I am a tooltip"> (To generate
+              <label for="full_name">Name<a class="tooltipped" name="full_name" data-position="right" data-tooltip="I am a tooltip"> (To generate
                 customised report)</a>
                 </label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="full_name"
+                name="full_name"
               />
             </div>
             <div>
