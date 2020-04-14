@@ -20,7 +20,8 @@
               <div class="col m6 l6 xl6" style="text-align: justify;">{% for key,value in user_details_API.items %}
                <span style="font-weight: 500;">{{key}} : </span>
                <span>{{value}}</span><br>
-              {% endfor %}</div>
+              {% endfor %}
+            </div>
               <div class="col m6 l6 xl6 center-align" style="margin-top: 50px;">
                 {% qr_from_text user_json_data size="T" %}
               </div>
@@ -28,6 +29,8 @@
             <center>
               {% if result %}
               <h6 class="Probability">COVID19 Probability: <span class="probability-value">{{ result }} %</span></h6>
+              {%else%}
+              <h6 class="Probability">COVID19 Probability: <span class="probability-value">0%</span></h6>
               {% endif %}
             </center>
           </div>
