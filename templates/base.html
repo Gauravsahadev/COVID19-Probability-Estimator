@@ -4,13 +4,16 @@
 <head>
   <title>COVIDProb</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'img/icon.png' %}">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'styles/materialize.min.css' %}">
 </head>
 <header>
 		 <nav style="background-color: #EC5050;">
     <div class="nav-wrapper">
-      <a class="brand-logo center" style="font-size:24px;font-weight: 599;">COVIDProb</a>
+      <a class="brand-logo center"
+      href="{% url 'index' %}"
+      style="font-size:24px;font-weight: 599;">COVIDProb</a>
       
     </div>
   </nav>
@@ -23,8 +26,11 @@
 <body>
 
 	{% block content %}
-
+  
 	{% endblock %}
-	
+	<footer>
+      <h6 class="center-align" style="font-size: 11px;margin-top: 50px;"><b>Note: </b>
+        This is a Machine Learning based Model.</h6>
+  </footer>
 </body>
 </html>

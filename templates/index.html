@@ -3,12 +3,7 @@
 {% block content %}
 
    <div class="container" style="padding:40px 15px 0px 15px">
-      <!-- Result Block -->
-      {% if result %}
-      <div class="display-4 my-2 text-center">
-        COVID19 Probability: {{ result }}
-      </div>
-      {% endif %}
+      
       
       <div>
         <form class="row" method="POST" action="{% url 'index' %}">
@@ -32,20 +27,20 @@
                 class="form-control"
                 id="age"
                 min=1 max=150
-                name="age"
+                name="age" required
               />
             </div>
             <div class="form-control">
               <label for="gender">Gender</label>
-              <select name="gender" class="browser-default">
+              <select name="gender" class="browser-default" required>
                 <option value="" disabled selected>Choose your option</option>
                 <option value="0">Female</option>
                 <option value="1">Male</option>
               </select>
             </div><br>
             <div>
-              <label for="lives_in_affected_area">Do you live in an affected area?</label>
-              <select name="lives_in_affected_area" class="browser-default">
+              <label for="cough">Do you live in an affected area?</label>
+              <select name="lives_in_affected_area" required class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
@@ -53,7 +48,7 @@
             </div><br>
             <div>
               <label for="fever">Fever</label>
-              <select name="fever" class="browser-default">
+              <select name="fever" required class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
@@ -61,7 +56,7 @@
             </div><br>
             <div>
               <label for="cough">Dry Cough</label>
-              <select name="cough" class="browser-default">
+              <select name="cough" required class="browser-default">
                 <option value="" disabled selected>Choose your option</option>
                 <option value="1">Yes</option>
                 <option value="0">No</option>
