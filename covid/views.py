@@ -113,7 +113,7 @@ def index(request):
             'Headache':headache,
             'Vomiting':vomiting
         }
-        classifier = LogisticRegression()
+        classifier = RandomForestClassifier(random_state=42)
         classifier.fit(np.nan_to_num(X), y)
         result = classifier.predict_proba(user_data) 
         result=round(result[0][1]*100,2)

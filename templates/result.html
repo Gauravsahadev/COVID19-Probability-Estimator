@@ -21,9 +21,8 @@
                <span style="font-weight: 500;">{{key}} : </span>
                <span>{{value}}</span><br>
               {% endfor %}</div>
-              <div style="color: green;"class="col m6 l6 xl6 center-align">
-              {% qr_from_text user_json_data size="T" %}
-
+              <div class="col m6 l6 xl6 center-align" style="margin-top: 50px;">
+                {% qr_from_text user_json_data size="T" %}
               </div>
             </div>
             <center>
@@ -57,18 +56,22 @@
     }
     let val = document.querySelector('.probability-value')
     // Low, Mild, Moderate, Severe
-    if(parseFloat(val.textContent)<=25)
+    if(parseFloat(val.textContent)<=25){
       val.style.color="green"
-    else if(parseFloat(val.textContent)>25 && parseFloat(val.textContent) <=45)
+      document.querySelector('path').style.fill="green"
+    }
+      
+    else if(parseFloat(val.textContent)>25 && parseFloat(val.textContent) <=45){
       val.style.color="#ff7600"
-    else if(parseFloat(val.textContent)>45 && parseFloat(val.textContent) <=70)
+      document.querySelector('path').style.fill="#ff7600"
+    }
+    else if(parseFloat(val.textContent)>45 && parseFloat(val.textContent) <=70){
       val.style.color="#0008ff"
-    else 
+      document.querySelector('path').style.fill="#0008ff"
+    }
+    else {
       val.style.color="red"
+      document.querySelector('path').style.fill="red"
+    }
 </script>
-<style>
-  path#qr-path{
-   fill: #1e9161;
-  }
-</style>
 {% endblock %}
