@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from .models import Coviddata
-import pickle
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+
 import json
 def index(request):
     
+    df = pd.read_csv('covid_final_data.csv')
+    X = df.iloc[:,0:15].values
+    Y = df.iloc[:,15].values
+
+    
+
     if request.method == 'POST':
         full_name = request.POST['full_name']
         age = request.POST['age']
@@ -33,9 +40,7 @@ def index(request):
         vomiting = request.POST.get('vomiting')
         vomiting = 1 if vomiting else 0
         lives_in_affected_area = request.POST['lives_in_affected_area']
-        file = open("model.pkl", "rb")
-        classifier = pickle.load(file)
-        file.close()
+
         user_data = np.array(
             (age,
              gender,
@@ -55,6 +60,16 @@ def index(request):
              )
         ).reshape(1, 15)
 
+
+        print(user_data)
+
+        classifier = RandomForestClassifier( 
+            n_estimators=26,
+            criterion='entropy',
+            max_depth=9,
+            random_state=42)
+        classifier.fit(np.nan_to_num(X), Y)
+        classifier.score(np.nan_to_num(X), Y)
         result = classifier.predict_proba(user_data) 
         result=round(result[0][1]*100,2)
         print(f"Result: {result}")
