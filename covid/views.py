@@ -1,25 +1,11 @@
 from django.shortcuts import render
+from .models import Coviddata
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
-
 import json
-
-# import qrcode
-# mod_qrcode = qrcode.QRCode(
-#     version=2, box_size=5,
-#     border=1,
-# )
-
-# mod_qrcode.add_data(r'https://www.codespeedy.com/blog/')
-# mod_qrcode.make(fit=True)
-# qrcode_image = mod_qrcode.make_image(fill_color="blue", back_color="yellow")
-# qrcode_image.show()
-# qrcode_image.save('codespeedy_code.png')
-
-
 def index(request):
     
     df = pd.read_csv('covid_final_data.csv')
@@ -77,7 +63,15 @@ def index(request):
 
 
         print(user_data)
-        print(full_name)
+
+        classifier = RandomForestClassifier(random_state=42)
+        classifier.fit(np.nan_to_num(X), y)
+        result = classifier.predict_proba(user_data) 
+        result=round(result[0][1]*100,2)
+        print(f"Result: {result}")
+
+        covid_data=Coviddata.objects.create(age=age,gender=gender,fever=fever,cough=cough,fatigue=fatigue,pains=pains,nasal_congestion=nasal_congestion,shortness_of_breath=shortness_of_breath,runny_nose=runny_nose,sore_throat=sore_throat,diarrhea=diarrhea,chills=chills,headache=headache,vomiting=vomiting,lives_in_affected_area=lives_in_affected_area,result=result)
+        covid_data.save()
 
         age = int(user_data[0][0])
         gender = 'Male' if int(user_data[0][1]) else 'Female'
@@ -113,11 +107,7 @@ def index(request):
             'Headache':headache,
             'Vomiting':vomiting
         }
-        classifier = RandomForestClassifier(random_state=42)
-        classifier.fit(np.nan_to_num(X), y)
-        result = classifier.predict_proba(user_data) 
-        result=round(result[0][1]*100,2)
-        print(f"Result: {result}")
+     
         return render(request,"result.html",{'result':result,'user_details_API':user_details_API,
                         'user_json_data':json.dumps(user_details_API)})
     else:
