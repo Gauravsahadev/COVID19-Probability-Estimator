@@ -100,7 +100,17 @@ def index(request):
         result = classifier.predict_proba(user_data)
         result=round(result[0][1]*100,2)
         print(f"Result: {result}")
+        import qrcode
+        mod_qrcode = qrcode.QRCode(
+            version=2, box_size=5,
+            border=1,
+        )
+        mod_qrcode.add_data(user_details_API)
+        mod_qrcode.make(fit=True)
+        qrcode_image = mod_qrcode.make_image(fill_color="blue", back_color="yellow")
+        # qrcode_image.show()
+
         return render(request,"result.html",{'result':result,'user_details_API':user_details_API,
-                        'user_json_data':json.dumps(user_details_API)})
+                        'user_json_data':json.dumps(user_details_API),'qrcode_image':qrcode_image})
     else:
         return render(request,"index.html")
