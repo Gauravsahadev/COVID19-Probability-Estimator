@@ -21,5 +21,6 @@ from django.conf import settings
 
 urlpatterns = [
 	path('', include('covid.urls')),
+	path('result', include('covid.urls')),
     path('admin/', admin.site.urls),
 ]
