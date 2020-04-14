@@ -8,15 +8,16 @@
       <div>
         <form class="row" method="POST" action="{% url 'index' %}">
           {% csrf_token %}
-          <div class="col m6">
-            <div>
-              <label for="full_name">Name<a class="tooltipped" name="full_name" data-position="right" data-tooltip="I am a tooltip"> (To generate
+          <div class="col m6 s12">
+            <div >
+              <label for="full_name">Full Name<a class="tooltipped" name="full_name" data-position="right" data-tooltip="I am a tooltip"> (To generate
                 customised report)</a>
                 </label>
               <input
                 type="text"
                 id="full_name"
                 name="full_name"
+                
               />
             </div>
             <div>
@@ -29,7 +30,7 @@
                 min=1 max=150
                 name="age" required
               />
-            </div>
+            </div>  
             <div class="form-control">
               <label for="gender">Gender</label>
               <select name="gender" class="browser-default" required>
@@ -64,8 +65,8 @@
             </div>
           </div>
 
-          <div class="col m6">
-            <strong>What are the other problems?</strong>
+          <div class="col m6 s12" >
+            <strong>What are the other problems?</strong><br>
             <div>
               <label>
                 <input id="indeterminate-checkbox fatigue" name="fatigue"  type="checkbox" />
@@ -129,7 +130,9 @@
             </div><br>
                   <br>
           </div>
+          
           <center>
+            
             <button type="submit" class="btn" style="background-color: #13afaf;">
               SUBMIT<i class="material-icons right">send</i>
             </button>

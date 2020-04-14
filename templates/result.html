@@ -31,11 +31,21 @@
               <h6 class="Probability">COVID19 Probability: <span class="probability-value">{{ result }} %</span></h6>
               {%else%}
               <h6 class="Probability">COVID19 Probability: <span class="probability-value">0%</span></h6>
-              {% endif %}
+              {% endif %}<br>
+            
+              <div style="padding:5px 0px 5px 0px">
+                <svg width="20" height="10">
+                  <rect width="36" height="18" style="fill:green"/><span> Low Risk</span>
+                </svg>
+                <svg width="20" height="10">
+                  <rect width="36" height="18" style="fill:blue"/><span> Moderate Risk</span>
+                </svg>
+                <svg width="20" height="10">
+                  <rect width="36" height="18" style="fill:red"/><span> High Risk</span>
+                </svg>
+              </div>
             </center>
           </div>
-          
-          <br>
           <div class="card-action">
             <a href="#" class="btn-flat" style="background-color: #13afaf;
             color: #ffffff;" id="print-btn" onclick="printDiv()">Print</a>
@@ -59,18 +69,14 @@
     }
     let val = document.querySelector('.probability-value')
     // Low, Mild, Moderate, Severe
-    if(parseFloat(val.textContent)<=25){
+    if(parseFloat(val.textContent)<=40){
       val.style.color="green"
       document.querySelector('path').style.fill="green"
     }
       
-    else if(parseFloat(val.textContent)>25 && parseFloat(val.textContent) <=45){
-      val.style.color="#ff7600"
-      document.querySelector('path').style.fill="#ff7600"
-    }
-    else if(parseFloat(val.textContent)>45 && parseFloat(val.textContent) <=70){
-      val.style.color="#0008ff"
-      document.querySelector('path').style.fill="#0008ff"
+    else if(parseFloat(val.textContent)>40 && parseFloat(val.textContent) <=75){
+      val.style.color="blue"
+      document.querySelector('path').style.fill="blue"
     }
     else {
       val.style.color="red"

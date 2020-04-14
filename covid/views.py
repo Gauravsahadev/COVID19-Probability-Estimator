@@ -3,14 +3,13 @@ from .models import Coviddata
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
+
 import json
 def index(request):
     
     df = pd.read_csv('covid_final_data.csv')
     X = df.iloc[:,0:15].values
-    y = df.iloc[:,15].values
+    Y = df.iloc[:,15].values
 
     
 
@@ -64,8 +63,13 @@ def index(request):
 
         print(user_data)
 
-        classifier = RandomForestClassifier(random_state=42)
-        classifier.fit(np.nan_to_num(X), y)
+        classifier = RandomForestClassifier( 
+            n_estimators=26,
+            criterion='entropy',
+            max_depth=9,
+            random_state=42)
+        classifier.fit(np.nan_to_num(X), Y)
+        classifier.score(np.nan_to_num(X), Y)
         result = classifier.predict_proba(user_data) 
         result=round(result[0][1]*100,2)
         print(f"Result: {result}")

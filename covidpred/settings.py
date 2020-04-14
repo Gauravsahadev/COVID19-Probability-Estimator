@@ -25,7 +25,7 @@ SECRET_KEY = 'ff45r5bt$3e%ztoo$x%b=v*$-z#elm#)&b@%2(k2w3(tt=f4l7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.43.132','127.0.0.1']
 
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'static')
@@ -81,8 +81,8 @@ WSGI_APPLICATION = 'covidpred.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CovidDB',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'coviddb',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost'
