@@ -17,7 +17,7 @@
             <center><span class="card-title" style="font-weight: 500;">COVID19 Report Card</span></center>
             <br>
             <div class="row card_data">
-              <div class="col m6 l6 xl6">{% for key,value in user_details_API.items %}
+              <div class="col m6 l6 xl6" style="text-align: justify;">{% for key,value in user_details_API.items %}
                <span style="font-weight: 500;">{{key}} : </span>
                <span>{{value}}</span><br>
               {% endfor %}</div>
@@ -28,7 +28,7 @@
             </div>
             <center>
               {% if result %}
-              <h6>COVID19 Probability: {{ result }} %</h6>
+              <h6 class="Probability">COVID19 Probability: <span class="probability-value">{{ result }} %</span></h6>
               {% endif %}
             </center>
           </div>
@@ -55,6 +55,16 @@
      window.close()
      document.body.innerHTML = originalContents;
     }
+    let val = document.querySelector('.probability-value')
+    // Low, Mild, Moderate, Severe
+    if(parseFloat(val.textContent)<=25)
+      val.style.color="green"
+    else if(parseFloat(val.textContent)>25 && parseFloat(val.textContent) <=45)
+      val.style.color="#ff7600"
+    else if(parseFloat(val.textContent)>45 && parseFloat(val.textContent) <=70)
+      val.style.color="#0008ff"
+    else 
+      val.style.color="red"
 </script>
 
 {% endblock %}
