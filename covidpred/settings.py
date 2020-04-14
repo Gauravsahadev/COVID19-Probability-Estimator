@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'covidpred.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'coviddb',
+        'NAME': 'CovidDB',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost'
